@@ -1,6 +1,0 @@
-{{- if .Values.fullnameOverride }}
-Release name: {{ .Release.Name }}
-{{- end }}
-
-Application URL:
-  http://{{ .Values.ingress.host }}/
