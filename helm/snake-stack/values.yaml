@@ -1,0 +1,86 @@
+fullnameOverride: ""
+
+frontend:
+  replicaCount: 2
+  image:
+    repository: ghcr.io/your-org/snake-frontend
+    tag: latest
+    pullPolicy: IfNotPresent
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+backend:
+  replicaCount: 2
+  image:
+    repository: ghcr.io/your-org/snake-backend
+    tag: latest
+    pullPolicy: IfNotPresent
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 300m
+      memory: 256Mi
+
+mysql:
+  image:
+    repository: mysql
+    tag: "8.4"
+    pullPolicy: IfNotPresent
+  storage:
+    size: 8Gi
+    storageClass: ""
+  resources:
+    requests:
+      cpu: 200m
+      memory: 384Mi
+    limits:
+      cpu: 500m
+      memory: 768Mi
+  credentials:
+    rootPassword: root_password
+    user: snake_user
+    password: snake_password
+  initSql: |
+    CREATE DATABASE IF NOT EXISTS snake CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+    USE snake;
+
+    CREATE TABLE IF NOT EXISTS users (
+      id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+      username VARCHAR(32) NOT NULL,
+      password_hash VARCHAR(255) NOT NULL,
+      created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY (id),
+      UNIQUE KEY uq_users_username (username)
+    ) ENGINE=InnoDB;
+
+    CREATE TABLE IF NOT EXISTS scores (
+      id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+      user_id INT UNSIGNED NOT NULL,
+      score INT NOT NULL,
+      created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY (id),
+      KEY idx_scores_user_created (user_id, created_at),
+      KEY idx_scores_score_created (score DESC, created_at ASC),
+      CONSTRAINT fk_scores_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    ) ENGINE=InnoDB;
+
+config:
+  dbName: snake
+  dbHost: mysql
+  dbPort: "3306"
+  corsOrigin: "*"
+  appJwtSecret: replace-with-strong-secret
+
+ingress:
+  className: nginx
+  host: snake.local
+
+monitoring:
+  prometheusScrape: true
