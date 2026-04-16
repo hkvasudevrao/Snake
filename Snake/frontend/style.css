@@ -1,0 +1,150 @@
+:root {
+  --bg: #f8f4e3;
+  --panel: #fffdf4;
+  --ink: #1e2a39;
+  --accent: #12776b;
+  --accent-2: #f08a24;
+  --grid: #e4dcc5;
+  --danger: #b9382f;
+  --shadow: rgba(30, 42, 57, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 20% 10%, #fff9dd, transparent 40%),
+    radial-gradient(circle at 85% 85%, #ffd9b8, transparent 35%),
+    linear-gradient(145deg, #f5efdb 0%, #efe3c4 100%);
+}
+
+.layout {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 2fr 1fr;
+}
+
+.panel {
+  background: var(--panel);
+  border: 2px solid #dfd2b3;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+h1,
+h2 {
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  margin: 0 0 14px;
+  color: #4f5f70;
+}
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+canvas {
+  width: 100%;
+  max-width: 400px;
+  border: 2px solid #b9a780;
+  border-radius: 12px;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-color: #fffdf6;
+  display: block;
+}
+
+.controls,
+.actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+#reset-btn,
+#refresh-board-btn {
+  background: var(--accent-2);
+}
+
+input {
+  width: 100%;
+  margin: 6px 0 10px;
+  border: 1px solid #ccb88d;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.session {
+  margin: 14px 0;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f1ead6;
+  font-weight: 700;
+}
+
+.hint {
+  margin-top: 10px;
+  color: #5b6a78;
+}
+
+#leaderboard {
+  margin: 10px 0 0;
+  padding-left: 22px;
+}
+
+#leaderboard li {
+  margin: 6px 0;
+}
+
+.error {
+  color: var(--danger);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
+  canvas {
+    max-width: 100%;
+  }
+}

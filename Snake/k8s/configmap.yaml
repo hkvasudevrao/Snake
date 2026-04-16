@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: snake-config
+  namespace: snake
+data:
+  db-name: snake
+  db-host: mysql
+  db-port: "3306"
+  cors-origin: "*"
