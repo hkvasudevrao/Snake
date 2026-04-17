@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+ini_set('display_errors', '0');
+error_reporting(E_ALL);
+
 $allowedOrigin = getenv('CORS_ALLOW_ORIGIN') ?: '*';
 header('Access-Control-Allow-Origin: ' . $allowedOrigin);
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
@@ -13,6 +16,18 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'OPTIONS') {
 }
 
 header('Content-Type: application/json; charset=utf-8');
+
+set_exception_handler(static function (Throwable $exception): void {
+    error_log($exception->__toString());
+
+    if (!headers_sent()) {
+        header('Content-Type: application/json; charset=utf-8');
+    }
+
+    http_response_code(500);
+    echo json_encode(['error' => 'Internal server error'], JSON_UNESCAPED_SLASHES);
+    exit;
+});
 
 function send_json(array $payload, int $status = 200): void
 {

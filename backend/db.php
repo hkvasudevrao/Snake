@@ -10,6 +10,10 @@ function db(): PDO
         return $pdo;
     }
 
+    if (!extension_loaded('pdo_mysql')) {
+        throw new RuntimeException('The pdo_mysql PHP extension is not installed.');
+    }
+
     $host = getenv('DB_HOST') ?: '127.0.0.1';
     $port = getenv('DB_PORT') ?: '3306';
     $name = getenv('DB_NAME') ?: 'snake';

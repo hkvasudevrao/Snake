@@ -6,6 +6,8 @@ RUN set -eux; \
 
 FROM php:8.3-apache
 WORKDIR /var/www/html
-RUN a2enmod rewrite
+RUN set -eux; \
+    docker-php-ext-install pdo_mysql; \
+    a2enmod rewrite
 COPY backend/ /var/www/html/
 EXPOSE 80
