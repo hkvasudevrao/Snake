@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/your-org/snake.git
+    repoURL: https://github.com/hkvasudevrao/Snake.git
     targetRevision: main
     path: helm/snake-stack
     helm:
