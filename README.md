@@ -4,9 +4,7 @@ Full-stack Snake game packaged and delivered as a DevOps project with CI/CD, Kub
 
 ## Overview
 
-This repository contains a browser-based Snake game frontend, a PHP backend for authentication and leaderboard APIs, and a MySQL database. The application is containerized with Docker, deployed to Kubernetes, packaged with Helm, synchronized with Argo CD, and monitored with Prometheus and Grafana.
-
-The project is designed to demonstrate a realistic DevOps workflow rather than just a local app run:
+This repository contains a browser-based Snake game frontend, a PHP backend for authentication and leaderboard APIs and a MySQL database. The application is containerized with Docker, deployed to Kubernetes, packaged with Helm, synchronized with Argo CD, and monitored with Prometheus and Grafana.
 
 - Docker Compose for local development
 - GitHub Actions CI for linting, building, and publishing images
@@ -54,11 +52,8 @@ Backend metrics
 
 ## Features
 
-- User registration and login
-- Score submission and leaderboard API
 - Health endpoint for Kubernetes probes
 - Metrics endpoint for Prometheus scraping
-- Dockerized frontend and backend images
 - CI workflow with linting and image publishing
 - Kubernetes manifests with probes, limits, config, secrets, and ingress
 - Helm chart for repeatable deployment
@@ -251,12 +246,4 @@ Example metrics exposed by the backend:
 
 This project demonstrates the full path from application code to containerization, CI, registry publishing, Kubernetes deployment, GitOps synchronization, and observability. It is structured as a portfolio-ready DevOps project rather than a single-service demo.
 
-## Screens You Can Show In A Demo
-
-- GitHub Actions workflow success
-- GHCR packages for frontend and backend
-- `kubectl get pods -n snake`
-- `helm list -n snake`
-- `kubectl get application -n argocd`
-- Grafana login and dashboard/Explore view
-- `http://snake.local` and `http://snake.local/api/healthz.php`
+![alt text](snake_db_up.png)
