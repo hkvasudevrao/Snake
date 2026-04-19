@@ -242,8 +242,6 @@ Example metrics exposed by the backend:
 - Running the full stack on a small Minikube node can exhaust local resources. For stable local operation with Argo CD, Prometheus, and Grafana together, allocate more CPU and memory to Minikube.
 - The Terraform folder in this repo is for optional local k3d experiments and is not the primary deployment path documented here.
 
-## Why This Project Matters
+![alt text](images/ui/game.png)
 
-This project demonstrates the full path from application code to containerization, CI, registry publishing, Kubernetes deployment, GitOps synchronization, and observability. It is structured as a portfolio-ready DevOps project rather than a single-service demo.
-
-![alt text](snake_db_up.png)
+![alt text](images/grafana_prometheus/snake_db_up.png)
