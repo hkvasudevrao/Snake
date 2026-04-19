@@ -9,6 +9,7 @@ Override images:
 ```powershell
 helm upgrade --install snake helm/snake-stack \
   --namespace snake --create-namespace \
-  --set frontend.image.repository=ghcr.io/<org>/snake-frontend \
-  --set backend.image.repository=ghcr.io/<org>/snake-backend
+  --set imagePullSecrets[0]=ghcr-creds \
+  --set frontend.image.repository=ghcr.io/hkvasudevrao/snake-frontend \
+  --set backend.image.repository=ghcr.io/hkvasudevrao/snake-backend
 ```

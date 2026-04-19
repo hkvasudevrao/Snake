@@ -13,10 +13,12 @@ spec:
       labels:
         app: frontend
     spec:
+      imagePullSecrets:
+        - name: ghcr-creds
       containers:
         - name: frontend
-          image: ghcr.io/your-org/snake-frontend:latest
-          imagePullPolicy: IfNotPresent
+          image: ghcr.io/hkvasudevrao/snake-frontend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
               name: http

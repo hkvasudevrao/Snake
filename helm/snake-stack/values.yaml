@@ -1,11 +1,13 @@
 fullnameOverride: ""
+imagePullSecrets:
+  - ghcr-creds
 
 frontend:
   replicaCount: 2
   image:
-    repository: ghcr.io/your-org/snake-frontend
+    repository: ghcr.io/hkvasudevrao/snake-frontend
     tag: latest
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   resources:
     requests:
       cpu: 50m
@@ -17,9 +19,9 @@ frontend:
 backend:
   replicaCount: 2
   image:
-    repository: ghcr.io/your-org/snake-backend
+    repository: ghcr.io/hkvasudevrao/snake-backend
     tag: latest
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   resources:
     requests:
       cpu: 100m
